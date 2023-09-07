@@ -1,0 +1,31 @@
+
+    
+version: '3'
+services:
+  react:
+    container_name: travelreact
+    image: shreeshailm/awstrvlfrntend
+    ports:
+      - "5555:80"
+  mysqldb:
+    container_name: mysqldb
+    image: mysql:latest
+    ports:
+      - "4444:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: client
+    volumes:
+      - ~/mysql-data:/var/lib/mysql
+  springservice:
+    container_name: spring-app
+    image: shreeshailm/travelspringimg
+    ports:
+      - "7777:7070"
+    environment:
+      MYSQL_HOST: mysqldb
+      MYSQL_PORT: 3306
+      MYSQL_PASSWORD: client
+      MYSQL_USER: root
+
+
+    
